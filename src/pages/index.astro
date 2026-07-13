@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import HighlightGrid from "../components/HighlightGrid.astro";
+import PrintButton from "../components/PrintButton.astro";
+import Section from "../components/Section.astro";
+import SkillMatrix from "../components/SkillMatrix.astro";
+import ExperienceList from "../components/ExperienceList.astro";
+import ProjectGrid from "../components/ProjectGrid.astro";
+import { education, experiences, profile, projects } from "../data/resume";
+---
+
+<BaseLayout title={`${profile.name} | ${profile.title}`} description={profile.summary}>
+  <PrintButton />
+  <Header />
+  <main>
+    <HighlightGrid />
+
+    <Section id="skills" eyebrow="Stack" title="Skills" description="제품 개발과 운영에 반복적으로 사용해온 기술 스택입니다.">
+      <SkillMatrix />
+    </Section>
+
+    <Section id="experience" eyebrow="Career" title="Experience" description="회사별 주요 역할과 운영 경험을 요약했습니다.">
+      <ExperienceList items={experiences} />
+    </Section>
+
+    <Section id="projects" eyebrow="Selected Work" title="Projects" description="서비스 영향도가 있거나 백엔드 설계 경험이 드러나는 프로젝트 중심으로 정리했습니다.">
+      <ProjectGrid items={projects} />
+    </Section>
+
+    <Section id="education" eyebrow="Education" title="Education">
+      <ExperienceList items={education} />
+    </Section>
+  </main>
+
+  <footer class="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-10 text-sm text-neutral-500 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-10">
+    <p>{profile.name} - {profile.email}</p>
+    <p class="no-print">References on request</p>
+  </footer>
+</BaseLayout>

@@ -1,0 +1,13 @@
+---
+import { highlights } from "../data/resume";
+---
+
+<section class="screen-highlights mx-auto grid max-w-7xl gap-px bg-neutral-200 px-5 py-px sm:px-8 lg:grid-cols-4 lg:px-10">
+  {highlights.map((highlight) => (
+    <article class="bg-white p-6 sm:p-8" data-reveal>
+      <p class="text-3xl font-black text-neutral-950">{highlight.value}</p>
+      <h2 class="mt-8 text-sm font-bold uppercase tracking-[0.18em] text-neutral-950">{highlight.label}</h2>
+      <p class="mt-3 text-sm leading-6 text-neutral-500">{highlight.detail}</p>
+    </article>
+  ))}
+</section>

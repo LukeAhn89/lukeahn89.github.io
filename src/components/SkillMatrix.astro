@@ -1,0 +1,71 @@
+---
+import { skillGroups } from "../data/resume";
+import {
+  siApachekafka,
+  siDocker,
+  siElasticsearch,
+  siGraphql,
+  siHibernate,
+  siKotlin,
+  siLangchain,
+  siLanggraph,
+  siMongodb,
+  siMysql,
+  siNodedotjs,
+  siOpenjdk,
+  siFastapi,
+  siPython,
+  siRedis,
+  siSpringboot,
+  siTypescript,
+} from "simple-icons";
+
+const icons = {
+  docker: siDocker,
+  elasticsearch: siElasticsearch,
+  graphql: siGraphql,
+  hibernate: siHibernate,
+  java: siOpenjdk,
+  kafka: siApachekafka,
+  kotlin: siKotlin,
+  langchain: siLangchain,
+  langgraph: siLanggraph,
+  mongodb: siMongodb,
+  mysql: siMysql,
+  nodejs: siNodedotjs,
+  fastapi: siFastapi,
+  python: siPython,
+  redis: siRedis,
+  springboot: siSpringboot,
+  typescript: siTypescript,
+};
+---
+
+<div class="skill-matrix grid gap-4 lg:grid-cols-3">
+  {skillGroups.map((skill) => (
+    <article class="rounded-[8px] border border-neutral-200 bg-neutral-50 p-6" data-reveal>
+      <h3 class="text-2xl font-black tracking-normal text-neutral-950">{skill.name}</h3>
+      <p class="mt-2 text-sm leading-6 text-neutral-500">{skill.description}</p>
+      <div class="mt-6 flex flex-wrap gap-2.5">
+        {skill.items.map((item) => {
+          const icon = item.icon ? icons[item.icon as keyof typeof icons] : undefined;
+
+          return (
+            <span class="inline-flex h-10 items-center gap-2 rounded-full border border-neutral-200 bg-white px-3 text-sm font-bold text-neutral-900 shadow-[0_1px_0_rgba(0,0,0,0.03)]">
+              {icon ? (
+                <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" aria-hidden="true" style={`color:#${icon.hex}`}>
+                  <path fill="currentColor" d={icon.path}></path>
+                </svg>
+              ) : (
+                <span class="flex h-4 w-4 shrink-0 items-center justify-center rounded-[3px] bg-neutral-950 text-[9px] font-black text-white">
+                  {item.name.slice(0, 1)}
+                </span>
+              )}
+              <span>{item.name}</span>
+            </span>
+          );
+        })}
+      </div>
+    </article>
+  ))}
+</div>

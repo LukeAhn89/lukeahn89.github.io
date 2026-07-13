@@ -1,0 +1,57 @@
+---
+import type { ResumeItem } from "../data/resume";
+
+type Props = {
+  items: ResumeItem[];
+};
+
+const { items } = Astro.props;
+---
+
+<div class="space-y-8">
+  {items.map((item) => (
+    <article class="experience-item group grid gap-5 border-l border-neutral-200 pl-5 sm:grid-cols-[260px_1fr] sm:gap-8 sm:pl-8" data-reveal>
+      <div class="flex gap-4">
+        {item.companyLogo && (
+          <div
+            class:list={[
+              "company-mark flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-neutral-100",
+              item.companyLogoFlush ? "p-0" : "p-1.5",
+              item.companyMarkClass,
+            ]}
+          >
+            <img
+              class:list={["h-full w-full object-contain", item.companyLogoClass]}
+              src={item.companyLogo}
+              alt={`${item.company ?? item.name} 로고`}
+            />
+          </div>
+        )}
+        <div>
+          <p class="text-sm font-bold text-neutral-950">{item.period ?? "Project"}</p>
+          {item.link ? (
+            <a class="group mt-2 inline-block" href={item.link} target="_blank" rel="noreferrer">
+              <h3 class="text-xl font-black tracking-normal text-neutral-950 underline decoration-2 decoration-neutral-300 underline-offset-4 group-hover:decoration-lime-300">
+                {item.company ?? item.name}
+              </h3>
+            </a>
+          ) : (
+            <h3 class="mt-2 text-xl font-black tracking-normal text-neutral-950">{item.company ?? item.name}</h3>
+          )}
+          {item.role && <p class="mt-2 text-sm font-semibold text-neutral-500">{item.role}</p>}
+        </div>
+      </div>
+      <div>
+        {item.summary && <p class="text-lg font-semibold leading-8 text-neutral-900">{item.summary}</p>}
+        <ul class="mt-5 space-y-3 text-base leading-7 text-neutral-700">
+          {item.bullets.map((bullet) => (
+            <li class="flex gap-3">
+              <span class="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-lime-400"></span>
+              <span>{bullet}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </article>
+  ))}
+</div>
