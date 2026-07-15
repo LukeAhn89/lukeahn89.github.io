@@ -1,0 +1,21 @@
+{
+  "name": "dkswjdals89-resume",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.30.3",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.2",
+    "astro": "^7.0.6",
+    "simple-icons": "^16.25.0",
+    "tailwindcss": "^4.3.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,7 +1,6 @@
-*.gem
-.bundle
-.sass-cache
-_site
+node_modules/
+dist/
+.astro/
+.DS_Store
 *.code-workspace
-vendor
-.idea
+.idea/
