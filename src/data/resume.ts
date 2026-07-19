@@ -137,14 +137,14 @@ export const experiences: ResumeItem[] = [
     companyMarkClass: "h-14 w-14",
     companyInitial: "N",
     link: "https://www.nol-universe.com",
-    role: "Software Engineer / Generative Contents Product Team Lead",
+    role: "Software Engineer / Generative Content Platform Team Lead",
     period: "2025.02.25 ~ 현재",
-    summary: "Generative Contents Product 팀에서 여행 콘텐츠 제작을 자동화하는 LLM Agent 기반 GCP Studio 개발 리딩",
+    summary: "Generative Content Platform 팀에서 여행 콘텐츠 제작을 자동화하는 LLM Agent 기반 GCP Studio 개발 리딩",
     bullets: [
       "놀 콘텐츠팀의 수기 여행 가이드 제작 워크플로우를 분석해 초안 생성, 섹션 단위 재생성, 검토 흐름을 지원하는 내부 도구 설계 및 개발",
       "LangGraph 기반 콘텐츠 생성 라이프사이클을 설계해 구조 기획, 섹션별 생성, 리뷰 대기, 피드백 기반 재생성을 하나의 워크플로우로 구성",
       "POI, 이미지, 웹 검색 도구를 Agent Tool로 연동하고 생성 결과를 서비스 렌더링 가능한 구조화 콘텐츠로 변환",
-      "Generative Contents Product 팀 리더 역할 수행",
+      "Generative Content Platform 팀 리더 역할 수행",
     ],
   },
   {
