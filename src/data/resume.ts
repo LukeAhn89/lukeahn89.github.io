@@ -43,7 +43,7 @@ export const profile = {
   name: "안정민",
   title: "Software Engineer",
   email: "dkswjdals89@gmail.com",
-  github: "dkswjdals89",
+  github: "lukeahn89",
   image: "/assets/images/profile.webp",
   location: "Seoul, Korea",
   summary:
@@ -56,7 +56,7 @@ export const profile = {
   links: [
     {
       label: "GitHub",
-      href: "https://github.com/dkswjdals89",
+      href: "https://github.com/lukeahn89",
     },
     {
       label: "Email",
