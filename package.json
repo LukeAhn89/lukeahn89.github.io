@@ -6,8 +6,13 @@
   "packageManager": "pnpm@10.30.3",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview"
+    "build": "astro build && node scripts/generate-pdfs.mjs",
+    "build:pdf": "node scripts/generate-pdfs.mjs",
+    "build:all": "astro build && node scripts/generate-pdfs.mjs",
+    "preview": "astro preview",
+    "test:resume": "node --test tests/multilingual-resume.test.mjs",
+    "test:pdf": "node --test tests/pdf-targets.test.mjs",
+    "test": "astro build && node --test tests/career-years.test.mjs tests/multilingual-resume.test.mjs tests/pdf-targets.test.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.2",

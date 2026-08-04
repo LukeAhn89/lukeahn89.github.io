@@ -1,5 +1,5 @@
 ---
-import { skillGroups } from "../data/resume";
+import type { SkillGroup } from "../data/resume.types";
 import {
   siApachekafka,
   siDocker,
@@ -39,6 +39,12 @@ const icons = {
   springboot: siSpringboot,
   typescript: siTypescript,
 };
+
+type Props = {
+  skillGroups: SkillGroup[];
+};
+
+const { skillGroups } = Astro.props;
 ---
 
 <div class="skill-matrix grid gap-4 lg:grid-cols-3">

@@ -2,15 +2,23 @@
 import "../styles/global.css";
 
 type Props = {
+  lang: "ko" | "en";
   title: string;
   description: string;
+  canonicalPath: "/" | "/en/";
+  alternatePath: "/" | "/en/";
 };
 
-const { title, description } = Astro.props;
+const site = "https://lukeahn89.github.io";
+const { lang, title, description, canonicalPath, alternatePath } = Astro.props;
+const alternateLang = lang === "ko" ? "en" : "ko";
+const canonicalUrl = new URL(canonicalPath, site).toString();
+const alternateUrl = new URL(alternatePath, site).toString();
+const defaultUrl = new URL("/", site).toString();
 ---
 
 <!doctype html>
-<html lang="ko">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,7 +26,11 @@ const { title, description } = Astro.props;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://lukeahn89.github.io" />
+    <meta property="og:url" content={canonicalUrl} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang={lang} href={canonicalUrl} />
+    <link rel="alternate" hreflang={alternateLang} href={alternateUrl} />
+    <link rel="alternate" hreflang="x-default" href={defaultUrl} />
     <meta name="theme-color" content="#111111" />
     <link rel="icon" href="/favicon.ico" />
     <title>{title}</title>

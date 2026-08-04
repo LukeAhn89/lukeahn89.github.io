@@ -1,5 +1,5 @@
 ---
-import type { ResumeItem } from "../data/resume";
+import type { ResumeItem } from "../data/resume.types";
 
 type Props = {
   items: ResumeItem[];
@@ -23,7 +23,7 @@ const { items } = Astro.props;
             <img
               class:list={["h-full w-full object-contain", item.companyLogoClass]}
               src={item.companyLogo}
-              alt={`${item.company ?? item.name} 로고`}
+              alt={item.companyLogoAlt ?? `${item.company ?? item.name} logo`}
             />
           </div>
         )}
