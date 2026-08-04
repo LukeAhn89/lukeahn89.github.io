@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ExperienceList from "./ExperienceList.astro";
+import Header from "./Header.astro";
+import HighlightGrid from "./HighlightGrid.astro";
+import PrintButton from "./PrintButton.astro";
+import ProjectGrid from "./ProjectGrid.astro";
+import Section from "./Section.astro";
+import SkillMatrix from "./SkillMatrix.astro";
+import type { ResumeContent } from "../data/resume.types";
+
+type Props = {
+  content: ResumeContent;
+  alternateHref: "/" | "/en/";
+  alternateLabel: "KO" | "EN";
+};
+
+const { content, alternateHref, alternateLabel } = Astro.props;
+const { education, experiences, footer, highlights, meta, pdf, profile, projects, sections, skillGroups } = content;
+---
+
+<BaseLayout
+  lang={content.locale}
+  title={meta.title}
+  description={meta.description}
+  canonicalPath={meta.canonicalPath}
+  alternatePath={alternateHref}
+>
+  <PrintButton href={pdf.href} download={pdf.download} label={pdf.label} />
+  <Header profile={profile} locale={content.locale} alternateHref={alternateHref} alternateLabel={alternateLabel} />
+  <main>
+    <HighlightGrid highlights={highlights} />
+
+    <Section id="skills" {...sections.skills}>
+      <SkillMatrix skillGroups={skillGroups} />
+    </Section>
+
+    <Section id="experience" {...sections.experience}>
+      <ExperienceList items={experiences} />
+    </Section>
+
+    <Section id="projects" {...sections.projects}>
+      <ProjectGrid items={projects} />
+    </Section>
+
+    <Section id="education" {...sections.education}>
+      <ExperienceList items={education} />
+    </Section>
+  </main>
+
+  <footer class="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-10 text-sm text-neutral-500 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-10">
+    <p>{profile.name} - {profile.email}</p>
+    <p class="no-print">{footer.references}</p>
+  </footer>
+</BaseLayout>

@@ -1,5 +1,13 @@
 ---
-import { highlights } from "../data/resume";
+type Props = {
+  highlights: {
+    value: string;
+    label: string;
+    detail: string;
+  }[];
+};
+
+const { highlights } = Astro.props;
 ---
 
 <section class="screen-highlights mx-auto grid max-w-7xl gap-px bg-neutral-200 px-5 py-px sm:px-8 lg:grid-cols-4 lg:px-10">

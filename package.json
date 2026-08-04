@@ -7,7 +7,9 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "test:resume": "node --test tests/multilingual-resume.test.mjs",
+    "test": "astro build && node --test tests/multilingual-resume.test.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.2",
