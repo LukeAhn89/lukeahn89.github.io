@@ -17,6 +17,15 @@ test("passes the installed Chrome path to the PDF build", () => {
   assert.match(workflow, /CHROME_PATH: \$\{\{ steps\.setup-chrome\.outputs\.chrome-path \}\}/);
 });
 
+test("uses Chrome's no-sandbox mode only for the GitHub Actions PDF build", () => {
+  const workflow = readFileSync(new URL("../.github/workflows/deploy.yml", import.meta.url), "utf8");
+  const pdfGenerator = readFileSync(new URL("../scripts/generate-pdfs.mjs", import.meta.url), "utf8");
+
+  assert.match(workflow, /CHROME_NO_SANDBOX: "true"/);
+  assert.match(pdfGenerator, /process\.env\.CHROME_NO_SANDBOX === "true"/);
+  assert.match(pdfGenerator, /"--no-sandbox"/);
+});
+
 test("makes standard builds produce localized PDFs and development print locally", () => {
   const packageJson = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8"));
   const printButton = readFileSync(new URL("../src/components/PrintButton.astro", import.meta.url), "utf8");
