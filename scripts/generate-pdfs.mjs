@@ -80,7 +80,7 @@ async function generatePdf(chromePath, target) {
   const outputPath = resolve(distDir, target.output);
   await rm(outputPath, { force: true });
 
-  const result = spawnSync(chromePath, [
+  const chromeArguments = [
     "--headless=new",
     "--disable-gpu",
     "--no-first-run",
@@ -90,7 +90,11 @@ async function generatePdf(chromePath, target) {
     "--virtual-time-budget=3000",
     `--print-to-pdf=${outputPath}`,
     `${baseUrl}${target.path}`,
-  ], { encoding: "utf8" });
+  ];
+
+  if (process.env.CHROME_NO_SANDBOX === "true") chromeArguments.push("--no-sandbox");
+
+  const result = spawnSync(chromePath, chromeArguments, { encoding: "utf8" });
 
   if (result.error || result.status !== 0) {
     const detail = result.error?.message || result.stderr.trim() || `exit code ${result.status}`;
