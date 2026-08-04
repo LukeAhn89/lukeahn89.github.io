@@ -35,10 +35,13 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Install Chrome for Testing
+        id: setup-chrome
         uses: browser-actions/setup-chrome@v2
 
       - name: Build site and localized PDFs
         run: pnpm run build:all
+        env:
+          CHROME_PATH: ${{ steps.setup-chrome.outputs.chrome-path }}
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
