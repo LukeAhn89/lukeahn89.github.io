@@ -1,19 +1,35 @@
-# 안정민 이력서
+# Jungmin Ahn Resume
 
-Astro와 Tailwind CSS로 만든 개인 이력서입니다. 패키지는 pnpm으로 관리합니다.
+A bilingual personal resume built as a static website. The Korean resume is available at `/`, and the English resume is available at `/en/`. Each language also has a matching PDF generated from the rendered page during deployment.
+
+## Tech Stack
+
+- [Astro](https://astro.build/) and TypeScript for static page generation and typed resume content
+- [Tailwind CSS](https://tailwindcss.com/) for responsive styling and print layouts
+- [Simple Icons](https://simpleicons.org/) for the GitHub contact icon
+- Headless Chrome for generating the Korean and English PDF resumes
+- GitHub Actions and GitHub Pages for automated builds and deployment
 
 ## Development
 
 ```sh
-pnpm install
-pnpm run dev
+corepack pnpm install
+corepack pnpm run dev
 ```
 
-## Build
+The Korean and English resume content lives in `src/data/resume.ko.ts` and `src/data/resume.en.ts`. Shared assets and constants are in `src/data/resume.shared.ts`.
+
+## Build and Test
 
 ```sh
-pnpm run build
-pnpm run preview
+# Build the website
+corepack pnpm run build
+
+# Build the website and both localized PDFs
+corepack pnpm run build:all
+
+# Run the route, localization, accessibility, and PDF target tests
+corepack pnpm test
 ```
 
-이력서 내용은 `src/data/resume.ts`에서 관리하고, 다운로드용 PDF는 `public/resume.pdf`에 둡니다.
+`build:all` writes the static website to `dist/`, along with `dist/resume.pdf` and `dist/resume-en.pdf`.
