@@ -19,6 +19,9 @@ test("builds Korean and English resume routes with reciprocal locale metadata", 
 test("renders localized leadership, accessible contact actions, and matching PDFs", () => {
   const korean = readPage("../dist/index.html");
   const english = readPage("../dist/en/index.html");
+  const now = new Date();
+  const anniversary = new Date(now.getFullYear(), 6, 1);
+  const completedCareerYears = now.getFullYear() - 2013 - (now < anniversary ? 1 : 0);
 
   assert.match(korean, /Backend Developer \/ 접수·예약 개발 파트 리드/);
   assert.match(english, /Backend Developer \/ Reception &amp; Appointment Development Lead/);
@@ -28,6 +31,7 @@ test("renders localized leadership, accessible contact actions, and matching PDF
   assert.match(english, /data-contact-icon="email"/);
   assert.match(korean, /href="\/resume\.pdf"/);
   assert.match(english, /href="\/resume-en\.pdf"/);
+  assert.match(english, new RegExp(`Software engineer with ${completedCareerYears} years of experience`));
 });
 
 test("keeps the mobile header within the viewport", () => {

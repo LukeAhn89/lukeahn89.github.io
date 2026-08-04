@@ -16,3 +16,12 @@ test("passes the installed Chrome path to the PDF build", () => {
   assert.match(workflow, /id: setup-chrome/);
   assert.match(workflow, /CHROME_PATH: \$\{\{ steps\.setup-chrome\.outputs\.chrome-path \}\}/);
 });
+
+test("makes standard builds produce localized PDFs and development print locally", () => {
+  const packageJson = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8"));
+  const printButton = readFileSync(new URL("../src/components/PrintButton.astro", import.meta.url), "utf8");
+
+  assert.equal(packageJson.scripts.build, "astro build && node scripts/generate-pdfs.mjs");
+  assert.match(printButton, /import\.meta\.env\.DEV/);
+  assert.match(printButton, /window\.print\(\)/);
+});

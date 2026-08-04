@@ -1,7 +1,7 @@
-import { getCareerYear } from "./resume.shared";
+import { getCompletedCareerYears } from "./resume.shared";
 import type { ResumeContent } from "./resume.types";
 
-const careerYear = getCareerYear();
+const careerYear = getCompletedCareerYears();
 const profileSummary = `Software engineer with ${careerYear} years of experience across backend, frontend, and Windows application development, focused on system architecture and reliable operations.`;
 
 export const resumeEn = {

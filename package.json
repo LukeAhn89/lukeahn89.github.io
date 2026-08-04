@@ -6,7 +6,7 @@
   "packageManager": "pnpm@10.30.3",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/generate-pdfs.mjs",
     "build:pdf": "node scripts/generate-pdfs.mjs",
     "build:all": "astro build && node scripts/generate-pdfs.mjs",
     "preview": "astro preview",

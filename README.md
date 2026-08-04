@@ -22,14 +22,14 @@ The Korean and English resume content lives in `src/data/resume.ko.ts` and `src/
 ## Build and Test
 
 ```sh
-# Build the website
+# Build the website and both localized PDFs
 corepack pnpm run build
 
-# Build the website and both localized PDFs
+# Equivalent explicit command, kept for compatibility
 corepack pnpm run build:all
 
 # Run the route, localization, accessibility, and PDF target tests
 corepack pnpm test
 ```
 
-`build:all` writes the static website to `dist/`, along with `dist/resume.pdf` and `dist/resume-en.pdf`.
+Both build commands write the static website to `dist/`, along with `dist/resume.pdf` and `dist/resume-en.pdf`. During `pnpm run dev`, the same action opens the browser print dialog for the active language instead of linking to a missing generated file.

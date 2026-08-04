@@ -39,7 +39,7 @@ jobs:
         uses: browser-actions/setup-chrome@v2
 
       - name: Build site and localized PDFs
-        run: pnpm run build:all
+        run: pnpm run build
         env:
           CHROME_PATH: ${{ steps.setup-chrome.outputs.chrome-path }}
 

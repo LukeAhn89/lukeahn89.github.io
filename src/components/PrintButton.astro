@@ -6,13 +6,18 @@ type Props = {
 };
 
 const { href, download, label } = Astro.props;
+const isDevelopment = import.meta.env.DEV;
+const className = "no-print fixed right-5 top-5 z-50 inline-flex h-10 items-center justify-center rounded-full border border-neutral-200 bg-white/95 px-4 text-sm font-semibold text-neutral-700 shadow-[0_8px_24px_rgba(0,0,0,0.08)] backdrop-blur transition hover:border-neutral-950 hover:bg-white hover:text-neutral-950 focus:outline-none focus:ring-4 focus:ring-neutral-200 sm:right-8 lg:right-10";
 ---
 
-<a
-  class="no-print fixed right-5 top-5 z-50 inline-flex h-10 items-center justify-center rounded-full border border-neutral-200 bg-white/95 px-4 text-sm font-semibold text-neutral-700 shadow-[0_8px_24px_rgba(0,0,0,0.08)] backdrop-blur transition hover:border-neutral-950 hover:bg-white hover:text-neutral-950 focus:outline-none focus:ring-4 focus:ring-neutral-200 sm:right-8 lg:right-10"
-  href={href}
-  download={download}
-  data-print-button
->
-  {label}
-</a>
+{
+  isDevelopment ? (
+    <button class={className} type="button" onclick="window.print()" data-print-button>
+      {label}
+    </button>
+  ) : (
+    <a class={className} href={href} download={download} data-print-button>
+      {label}
+    </a>
+  )
+}
