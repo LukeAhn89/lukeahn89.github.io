@@ -3,6 +3,25 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 
 const readPage = (path) => readFileSync(new URL(path, import.meta.url), "utf8");
+const koreaDateFormatter = new Intl.DateTimeFormat("en-US", {
+  timeZone: "Asia/Seoul",
+  year: "numeric",
+  month: "numeric",
+  day: "numeric",
+});
+
+const getCompletedCareerYearsInKorea = (date = new Date()) => {
+  const current = Object.fromEntries(
+    koreaDateFormatter
+      .formatToParts(date)
+      .filter((part) => part.type !== "literal")
+      .map((part) => [part.type, Number(part.value)]),
+  );
+  const hasNotReachedAnniversary = current.month < 7
+    || (current.month === 7 && current.day < 1);
+
+  return current.year - 2013 - (hasNotReachedAnniversary ? 1 : 0);
+};
 
 test("builds Korean and English resume routes with reciprocal locale metadata", () => {
   const korean = readPage("../dist/index.html");
@@ -19,9 +38,7 @@ test("builds Korean and English resume routes with reciprocal locale metadata", 
 test("renders localized leadership, accessible contact actions, and matching PDFs", () => {
   const korean = readPage("../dist/index.html");
   const english = readPage("../dist/en/index.html");
-  const now = new Date();
-  const anniversary = new Date(now.getFullYear(), 6, 1);
-  const completedCareerYears = now.getFullYear() - 2013 - (now < anniversary ? 1 : 0);
+  const completedCareerYears = getCompletedCareerYearsInKorea();
 
   assert.match(korean, /Backend Developer \/ 접수·예약 개발 파트 리드/);
   assert.match(english, /Backend Developer \/ Reception &amp; Appointment Development Lead/);
