@@ -29,3 +29,10 @@ test("renders localized leadership, accessible contact actions, and matching PDF
   assert.match(korean, /href="\/resume\.pdf"/);
   assert.match(english, /href="\/resume-en\.pdf"/);
 });
+
+test("keeps the mobile header within the viewport", () => {
+  const korean = readPage("../dist/index.html");
+
+  assert.match(korean, /<nav class="no-print flex flex-col min-w-0/);
+  assert.doesNotMatch(korean, /<nav class="[^"]*\bpr-28\b/);
+});

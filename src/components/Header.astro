@@ -16,10 +16,10 @@ const mailIconPath = "M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a
 
 <header class="relative overflow-hidden border-b border-neutral-200 bg-white">
   <div class="mx-auto grid max-w-7xl gap-10 px-5 py-8 sm:px-8 lg:grid-cols-[1fr_340px] lg:px-10 lg:py-12">
-    <div class="flex min-h-[520px] flex-col justify-between gap-12 lg:min-h-[600px]">
-      <nav class="no-print flex flex-wrap items-center justify-between gap-3 pr-28 sm:gap-4 sm:pr-36">
+    <div class="flex min-h-[520px] min-w-0 flex-col justify-between gap-12 lg:min-h-[600px]">
+      <nav class="no-print flex flex-col min-w-0 items-start gap-4 pt-14 sm:flex-row sm:items-center sm:justify-between sm:pr-36 sm:pt-0">
         <a class="text-sm font-semibold tracking-wide text-neutral-950" href="/">Ahn Jungmin</a>
-        <div class="flex flex-wrap items-center justify-end gap-2 sm:gap-3">
+        <div class="flex w-full flex-wrap items-center justify-start gap-2 sm:w-auto sm:justify-end sm:gap-3">
           {profile.links.map((link) => (
             <a
               class="inline-flex min-h-10 items-center gap-2 rounded-full border border-neutral-200 px-3 py-2 text-sm font-medium text-neutral-700 transition hover:border-neutral-950 hover:text-neutral-950 focus:outline-none focus:ring-4 focus:ring-neutral-200 sm:px-4"
