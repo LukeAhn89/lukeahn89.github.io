@@ -12,7 +12,7 @@
     "preview": "astro preview",
     "test:resume": "node --test tests/multilingual-resume.test.mjs",
     "test:pdf": "node --test tests/pdf-targets.test.mjs",
-    "test": "astro build && node --test tests/multilingual-resume.test.mjs tests/pdf-targets.test.mjs"
+    "test": "astro build && node --test tests/career-years.test.mjs tests/multilingual-resume.test.mjs tests/pdf-targets.test.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.2",
